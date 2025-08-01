@@ -1,0 +1,2 @@
+multi_map_nav
+-DCATKIN_DEVEL_PREFIX=/home/ab/MultiMapNav/multi_map_navigation_deliverables_proper_20250801_220611/multi_map_nav_workspace/devel -DCMAKE_INSTALL_PREFIX=/home/ab/MultiMapNav/multi_map_navigation_deliverables_proper_20250801_220611/multi_map_nav_workspace/install -G Unix Makefiles

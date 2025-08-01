@@ -1,0 +1,14 @@
+<launch>
+  <!-- AR100 bringup -->
+  <include file="$(find anscer_gazebo)/launch/anscer_gazebo.launch"/>
+  <include file="$(find anscer_navigation)/launch/anscer_navigation.launch"/>
+
+  <!-- Our multi-map nodes -->
+  <node pkg="multi_map_nav" type="map_manager_node" name="map_manager" output="screen">
+    <param name="map_manager/default_map" value="room_a"/>
+  </node>
+  <node pkg="multi_map_nav" type="wormhole_detector_node" name="wormhole_detector" output="screen">
+    <param name="config/wormholes" value="$(find multi_map_nav)/config/wormholes.yaml"/>
+  </node>
+  <node pkg="multi_map_nav" type="multimap_nav_server" name="multi_map_nav" output="screen"/>
+</launch>

@@ -1,0 +1,55 @@
+<launch>
+  <!-- Launch Gazebo with 6-room world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find multi_map_nav)/worlds/6_room_house.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Load robot description -->
+  <include file="$(find anscer_description)/launch/anscer_description.launch"/>
+  
+  <!-- Wait a moment for robot description to load -->
+  <node pkg="rostopic" type="rostopic" name="wait_for_robot_desc" 
+        args="echo /robot_description" output="screen" required="true">
+    <param name="timeout" value="10.0"/>
+  </node>
+  
+  <!-- Spawn robot in Living Room (room_a) -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+        args="-param robot_description -urdf -model anscer_robot -x 0 -y 0 -z 0.1" />
+
+  <!-- Navigation stack (without anscer_gazebo to avoid conflict) -->
+  <include file="$(find anscer_navigation)/launch/anscer_navigation.launch"/>
+
+  <!-- Our multi-map nodes -->
+  <node pkg="multi_map_nav" type="map_manager_node" name="map_manager" output="screen">
+    <param name="map_manager/default_map" value="room_a"/>
+    <!-- 6-room system configuration -->
+    <param name="map_manager/available_maps" value="room_a,room_b,room_c,room_d,room_e,room_f"/>
+  </node>
+  
+  <node pkg="multi_map_nav" type="wormhole_detector_node" name="wormhole_detector" output="screen">
+    <param name="database_path" value="$(find multi_map_nav)/wormholes.db"/>
+  </node>
+  
+  <node pkg="multi_map_nav" type="multimap_nav_server" name="multi_map_nav" output="screen"/>
+  
+  <!-- Trajectory manager -->
+  <node pkg="multi_map_nav" type="trajectory_manager_node" name="trajectory_manager" output="screen">
+    <param name="database_path" value="$(find multi_map_nav)/trajectories.db"/>
+  </node>
+  
+  <!-- Launch RViz with proper configuration -->
+  <node pkg="rviz" type="rviz" name="rviz_fixed" args="-d $(find multi_map_nav)/rviz/multimap_demo.rviz" output="screen"/>
+
+  <!-- Print room information -->
+  <node pkg="rostopic" type="rostopic" name="room_info" 
+        args="echo '6-Room House Simulation Started'" output="screen">
+    <param name="timeout" value="5.0"/>
+  </node>
+
+</launch> 

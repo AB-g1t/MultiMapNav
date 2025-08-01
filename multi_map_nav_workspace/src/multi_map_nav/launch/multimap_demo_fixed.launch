@@ -1,0 +1,35 @@
+<launch>
+  <!-- Load robot description first -->
+  <include file="$(find anscer_description)/launch/anscer_description.launch"/>
+  
+  <!-- Wait a moment for robot description to load -->
+  <node pkg="rostopic" type="rostopic" name="wait_for_robot_desc" 
+        args="echo /robot_description" output="screen" required="true">
+    <param name="timeout" value="10.0"/>
+  </node>
+  
+  <!-- AR100 bringup -->
+  <include file="$(find anscer_gazebo)/launch/anscer_gazebo.launch"/>
+  <include file="$(find anscer_navigation)/launch/anscer_navigation.launch"/>
+
+  <!-- Our multi-map nodes -->
+  <node pkg="multi_map_nav" type="map_manager_node" name="map_manager" output="screen">
+    <param name="map_manager/default_map" value="room_a"/>
+    <!-- 6-room system configuration -->
+    <param name="map_manager/available_maps" value="room_a,room_b,room_c,room_d,room_e,room_f"/>
+  </node>
+  
+  <node pkg="multi_map_nav" type="wormhole_detector_node" name="wormhole_detector" output="screen">
+    <param name="database_path" value="$(find multi_map_nav)/wormholes.db"/>
+  </node>
+  
+  <node pkg="multi_map_nav" type="multimap_nav_server" name="multi_map_nav" output="screen"/>
+  
+  <!-- Trajectory manager -->
+  <node pkg="multi_map_nav" type="trajectory_manager_node" name="trajectory_manager" output="screen">
+    <param name="database_path" value="$(find multi_map_nav)/trajectories.db"/>
+  </node>
+  
+  <!-- Launch RViz with proper configuration -->
+  <node pkg="rviz" type="rviz" name="rviz_fixed" args="-d $(find multi_map_nav)/rviz/multimap_demo.rviz" output="screen"/>
+</launch> 

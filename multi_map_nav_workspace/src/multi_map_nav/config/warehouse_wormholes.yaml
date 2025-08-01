@@ -1,0 +1,80 @@
+# Distributed Warehouse Wormhole Configuration
+# Invisible tubes connecting distant warehouse rooms for automation
+
+wormholes:
+  # Receiving (A) to Storage 1 (B) - Horizontal tube
+  wormhole_a_b:
+    entry_room: "room_a"
+    exit_room: "room_b"
+    entry_pose: {x: 10.0, y: 0.0, z: 0.0}
+    exit_pose: {x: -10.0, y: 0.0, z: 0.0}
+    entry_polygon: "POLYGON((9.5 -0.5, 10.5 -0.5, 10.5 0.5, 9.5 0.5))"
+    exit_polygon: "POLYGON((-10.5 -0.5, -9.5 -0.5, -9.5 0.5, -10.5 0.5))"
+    tube_visible: false
+    tube_color: {r: 0.8, g: 0.2, b: 0.8, a: 0.1}
+
+  # Receiving (A) to Processing (C) - Vertical tube
+  wormhole_a_c:
+    entry_room: "room_a"
+    exit_room: "room_c"
+    entry_pose: {x: 0.0, y: 10.0, z: 0.0}
+    exit_pose: {x: 0.0, y: -10.0, z: 0.0}
+    entry_polygon: "POLYGON((-0.5 9.5, 0.5 9.5, 0.5 10.5, -0.5 10.5))"
+    exit_polygon: "POLYGON((-0.5 -10.5, 0.5 -10.5, 0.5 -9.5, -0.5 -9.5))"
+    tube_visible: false
+    tube_color: {r: 0.2, g: 0.8, b: 0.8, a: 0.1}
+
+  # Storage 1 (B) to Storage 2 (D) - Vertical tube
+  wormhole_b_d:
+    entry_room: "room_b"
+    exit_room: "room_d"
+    entry_pose: {x: 0.0, y: 10.0, z: 0.0}
+    exit_pose: {x: 0.0, y: -10.0, z: 0.0}
+    entry_polygon: "POLYGON((-0.5 9.5, 0.5 9.5, 0.5 10.5, -0.5 10.5))"
+    exit_polygon: "POLYGON((-0.5 -10.5, 0.5 -10.5, 0.5 -9.5, -0.5 -9.5))"
+    tube_visible: false
+    tube_color: {r: 0.8, g: 0.8, b: 0.2, a: 0.1}
+
+  # Processing (C) to Storage 2 (D) - Horizontal tube
+  wormhole_c_d:
+    entry_room: "room_c"
+    exit_room: "room_d"
+    entry_pose: {x: 10.0, y: 0.0, z: 0.0}
+    exit_pose: {x: -10.0, y: 0.0, z: 0.0}
+    entry_polygon: "POLYGON((9.5 -0.5, 10.5 -0.5, 10.5 0.5, 9.5 0.5))"
+    exit_polygon: "POLYGON((-10.5 -0.5, -9.5 -0.5, -9.5 0.5, -10.5 0.5))"
+    tube_visible: false
+    tube_color: {r: 0.2, g: 0.2, b: 0.8, a: 0.1}
+
+  # Receiving (A) to Shipping (E) - Long horizontal tube
+  wormhole_a_e:
+    entry_room: "room_a"
+    exit_room: "room_e"
+    entry_pose: {x: 10.0, y: 0.0, z: 0.0}
+    exit_pose: {x: -10.0, y: 0.0, z: 0.0}
+    entry_polygon: "POLYGON((9.5 -0.5, 10.5 -0.5, 10.5 0.5, 9.5 0.5))"
+    exit_polygon: "POLYGON((-10.5 -0.5, -9.5 -0.5, -9.5 0.5, -10.5 0.5))"
+    tube_visible: false
+    tube_color: {r: 0.8, g: 0.2, b: 0.2, a: 0.1}
+
+  # Storage 2 (D) to Quality Control (F) - Horizontal tube
+  wormhole_d_f:
+    entry_room: "room_d"
+    exit_room: "room_f"
+    entry_pose: {x: 10.0, y: 0.0, z: 0.0}
+    exit_pose: {x: -10.0, y: 0.0, z: 0.0}
+    entry_polygon: "POLYGON((9.5 -0.5, 10.5 -0.5, 10.5 0.5, 9.5 0.5))"
+    exit_polygon: "POLYGON((-10.5 -0.5, -9.5 -0.5, -9.5 0.5, -10.5 0.5))"
+    tube_visible: false
+    tube_color: {r: 0.2, g: 0.8, b: 0.2, a: 0.1}
+
+  # Shipping (E) to Quality Control (F) - Vertical tube
+  wormhole_e_f:
+    entry_room: "room_e"
+    exit_room: "room_f"
+    entry_pose: {x: 0.0, y: 10.0, z: 0.0}
+    exit_pose: {x: 0.0, y: -10.0, z: 0.0}
+    entry_polygon: "POLYGON((-0.5 9.5, 0.5 9.5, 0.5 10.5, -0.5 10.5))"
+    exit_polygon: "POLYGON((-0.5 -10.5, 0.5 -10.5, 0.5 -9.5, -0.5 -9.5))"
+    tube_visible: false
+    tube_color: {r: 0.8, g: 0.2, b: 0.8, a: 0.1} 

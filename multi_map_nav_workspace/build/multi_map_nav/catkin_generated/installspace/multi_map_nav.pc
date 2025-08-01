@@ -1,0 +1,8 @@
+prefix=/home/ab/MultiMapNav/multi_map_navigation_deliverables_proper_20250801_220611/multi_map_nav_workspace/install
+
+Name: multi_map_nav
+Description: Description of multi_map_nav
+Version: 0.1.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib /usr/lib/x86_64-linux-gnu/libyaml-cpp.so.0.6.2
+Requires: roscpp actionlib actionlib_msgs move_base_msgs geometry_msgs std_msgs tf2_ros map_server amcl nav_msgs visualization_msgs message_runtime
