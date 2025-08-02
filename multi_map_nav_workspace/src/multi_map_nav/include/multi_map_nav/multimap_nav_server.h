@@ -17,9 +17,20 @@ private:
   void executeCB(const multi_map_nav::MultiMapNavGoalConstPtr& goal);
   void crossCb(const std_msgs::String::ConstPtr& msg);
   void mapCb(const std_msgs::String::ConstPtr& msg);
-  void sendMove(const geometry_msgs::PoseStamped& p);
   void publishInitial(const geometry_msgs::PoseStamped& p);
   void publishFeedback(const std::string& s);
+  
+  // Enhanced wormhole passing functionality
+  bool waitForActiveMap();
+  bool performWormholeNavigation(const std::string& target_map);
+  bool findWormholeToTargetMap(const std::string& target_map);
+  void setupWormholePoses(const multi_map_nav::WormholeEntry& wormhole, bool reverse);
+  bool waitForWormholeCrossing();
+  bool performMapSwitch(const std::string& new_map);
+  bool sendMoveWithRetry(const geometry_msgs::PoseStamped& target);
+  bool sendMove(const geometry_msgs::PoseStamped& p);  // Changed to return bool
+  void publishInitialPoseWithCovariance(const geometry_msgs::PoseStamped& p);
+  bool parseExitPoseFromString(const std::string& pose_str, geometry_msgs::PoseStamped& exit_pose);
 
   actionlib::SimpleActionServer<multi_map_nav::MultiMapNavAction> as_;
   std::shared_ptr<actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>> mb_client_;

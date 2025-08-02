@@ -66,6 +66,7 @@ multi_map_nav/CMakeFiles/wormhole_detector_node.dir/src/wormhole_detector.cpp.o:
 multi_map_nav/CMakeFiles/wormhole_detector_node.dir/src/wormhole_detector.cpp.o: /home/ab/MultiMapNav/multi_map_navigation_deliverables_proper_20250801_220611/multi_map_nav_workspace/src/multi_map_nav/src/wormhole_detector.cpp
 multi_map_nav/CMakeFiles/wormhole_detector_node.dir/src/wormhole_detector.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
 multi_map_nav/CMakeFiles/wormhole_detector_node.dir/src/wormhole_detector.cpp.o: /opt/ros/noetic/include/geometry_msgs/Pose.h
+multi_map_nav/CMakeFiles/wormhole_detector_node.dir/src/wormhole_detector.cpp.o: /opt/ros/noetic/include/geometry_msgs/PoseStamped.h
 multi_map_nav/CMakeFiles/wormhole_detector_node.dir/src/wormhole_detector.cpp.o: /opt/ros/noetic/include/geometry_msgs/PoseWithCovariance.h
 multi_map_nav/CMakeFiles/wormhole_detector_node.dir/src/wormhole_detector.cpp.o: /opt/ros/noetic/include/geometry_msgs/PoseWithCovarianceStamped.h
 multi_map_nav/CMakeFiles/wormhole_detector_node.dir/src/wormhole_detector.cpp.o: /opt/ros/noetic/include/geometry_msgs/Quaternion.h

@@ -23,6 +23,8 @@ ros/ros.h
 -
 geometry_msgs/PoseWithCovarianceStamped.h
 -
+geometry_msgs/PoseStamped.h
+-
 std_msgs/String.h
 -
 vector
@@ -36,6 +38,10 @@ multi_map_nav/wormhole_database.h
 multi_map_nav/wormhole_detector.h
 /home/ab/MultiMapNav/multi_map_navigation_deliverables_proper_20250801_220611/multi_map_nav_workspace/src/multi_map_nav/src/multi_map_nav/wormhole_detector.h
 sstream
+-
+geometry_msgs/PoseStamped.h
+-
+std_msgs/String.h
 -
 
 /opt/ros/noetic/include/geometry_msgs/Point.h
@@ -72,6 +78,26 @@ ros/message_operations.h
 geometry_msgs/Point.h
 -
 geometry_msgs/Quaternion.h
+-
+
+/opt/ros/noetic/include/geometry_msgs/PoseStamped.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+std_msgs/Header.h
+-
+geometry_msgs/Pose.h
 -
 
 /opt/ros/noetic/include/geometry_msgs/PoseWithCovariance.h

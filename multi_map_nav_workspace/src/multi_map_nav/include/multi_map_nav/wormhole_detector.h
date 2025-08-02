@@ -1,6 +1,7 @@
 #pragma once
 #include <ros/ros.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
+#include <geometry_msgs/PoseStamped.h>
 #include <std_msgs/String.h>
 #include <vector>
 #include <memory>
@@ -18,49 +19,27 @@ struct Wormhole {
 
 /**
  * @brief Wormhole Detector for multi-map navigation
- * 
- * This class monitors the robot's position and detects when it enters
- * wormhole regions, triggering map switches for seamless navigation
- * between different mapped areas.
  */
 class WormholeDetector {
 public:
-  /**
-   * @brief Constructor
-   * @param nh ROS node handle
-   */
   WormholeDetector(ros::NodeHandle& nh);
 
 private:
-  /**
-   * @brief Load wormholes from database for current map
-   */
   void loadWormholes();
-  
-  /**
-   * @brief Callback for pose updates
-   * @param msg Pose message
-   */
   void poseCb(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msg);
-  
-  /**
-   * @brief Callback for map updates
-   * @param msg Map name message
-   */
   void mapCb(const std_msgs::String::ConstPtr& msg);
-  
-  /**
-   * @brief Check if a point is inside a WKT polygon
-   * @param x X coordinate
-   * @param y Y coordinate
-   * @param wkt Well-Known Text polygon representation
-   * @return true if point is inside polygon
-   */
   bool pointInWKT(double x, double y, const std::string& wkt);
+  bool isRobotInWormholeRegion(const geometry_msgs::PoseStamped& pose, const Wormhole& wormhole);
 
+  ros::NodeHandle nh_;
   ros::Subscriber sub_pose_, sub_map_;
   ros::Publisher pub_cross_;
+  ros::Publisher wormhole_crossed_pub_;
+  
   std::string current_map_, target_map_;
   std::vector<Wormhole> wormholes_;
   std::unique_ptr<multi_map_nav::WormholeDatabase> database_;
+  
+  bool robot_in_wormhole_;
+  geometry_msgs::PoseStamped current_robot_pose_;
 };
